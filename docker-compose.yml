@@ -10,6 +10,7 @@ services:
         - database 
       networks: 
         - snippetbox-network
+      restart: on-failure 
 
     database:
       image: mysql:5.7
