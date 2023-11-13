@@ -12,9 +12,7 @@ services:
         - snippetbox-network
 
     database:
-      build:
-        dockerfile: infra/db/Dockerfile  
-        context: .
+      image: mysql:5.7
       ports:
           - "3306:3306"
       environment:
@@ -23,9 +21,12 @@ services:
           MYSQL_USER: web
           MYSQL_PASSWORD: 123
       volumes:
-          - db-volume:/var/lib/mysql
+          - "db-volume:/var/lib/mysql"
+          - "./scripts/InitializeDatabase.sql:/docker-entrypoint-initdb.d/InitializeDatabase.sql"
       networks: 
         - snippetbox-network
+      command: ["--init-file", "/docker-entrypoint-initdb.d/InitializeDatabase.sql", "--datadir", "/var/lib/mysql"]
+
 
 volumes:
     db-volume:
