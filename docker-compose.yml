@@ -26,8 +26,6 @@ services:
           - "./scripts/InitializeDatabase.sql:/docker-entrypoint-initdb.d/InitializeDatabase.sql"
       networks: 
         - snippetbox-network
-      command: ["--init-file", "/docker-entrypoint-initdb.d/InitializeDatabase.sql", "--datadir", "/var/lib/mysql"]
-
 
 volumes:
     db-volume:
