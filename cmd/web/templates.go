@@ -12,15 +12,13 @@ type templateData struct {
 	CurrentYear int
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
+	Form        any
 }
 
 func humanDate(t time.Time) string {
 	return t.Format("02 Jan 2006 at 15:04")
 }
 
-// Initialize a template.FuncMap object and store it in a global variable. This is
-// essentially a string-keyed map which acts as a lookup between the names of our
-// custom template functions and the functions themselves.
 var functions = template.FuncMap{
 	"humanDate": humanDate,
 }
